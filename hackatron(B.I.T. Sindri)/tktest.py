@@ -1,6 +1,9 @@
 from tkinter import *
+
 window=Tk()
+#import tkinter as tk
 # add widgets here
+window['bg']='black'
 arr=[]
 import numpy as np
 import matplotlib.pyplot as plt
@@ -80,9 +83,9 @@ print(answer)
 
 
 
-lbl = Label(window, text="Hello")
+lbl = Label(window, text="")
 
-lbl.grid(column=0, row=0)
+lbl.place(x=350, y=170)
 def clicked():
  
     lbl.configure(text=answer)
@@ -90,12 +93,14 @@ def clicked():
     plt.scatter(arr,arr1*0)
     plt.plot(xgrid, density(xgrid))
     plt.show()
-btn=Button(window, text="This is Button widget", fg='blue',command=clicked)
-btn.place(x=80, y=100)
+photo1 = PhotoImage(file = r"./clock.png")
+photoimage1 = photo1.subsample(3, 3)
+btn=Button(window, text="Get TimeStamp", fg='blue',command=clicked, bg = "black", image = photoimage1)
+btn.place(x=580, y=300)
 
 rt=''
 lbl2 = Label(window, text = "Output comes here")
-lbl2.grid(column = 0, row = 10)
+lbl2.place(x = 700, y = 50)
 
 def speechTotext():
     r = sr.Recognizer()
@@ -110,10 +115,13 @@ def speechTotext():
     except:
         pass
     lbl2.configure(text=rt)
-btn=Button(window, text="This is Audio widget", fg='red',command=speechTotext)
-btn.place(x=200, y=100)
+photo = PhotoImage(file = r"./Group 3.png")
+photoimage = photo.subsample(3, 3)
+btn=Button(window, text="This is Audio widget", fg='red',command=speechTotext, image = photoimage,  bg = "black")
+btn.place(x=850, y=300)
 
 
 window.title('Hello Python')
-window.geometry("300x200+10+20")
+window.geometry("1500x500")
+
 window.mainloop()
